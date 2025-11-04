@@ -1,4 +1,4 @@
-module denjson
+module github.com/nathanverrilli/denjson
 
 go 1.25
 
