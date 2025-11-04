@@ -1,4 +1,4 @@
-module github.com/nathanverrilli/denjson
+module github.com/nathanverrilli/denJson
 
 go 1.24
 
