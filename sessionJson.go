@@ -1,4 +1,4 @@
-package denjson
+package denJson
 
 import (
 	"time"
