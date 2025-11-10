@@ -18,7 +18,7 @@ type Cdr struct {
 	StopDateTime     time.Time        `json:"stop_date_time"`
 	AuthID           string           `json:"auth_id"`
 	AuthMethod       string           `json:"auth_method"`
-	AuthorizationID  string           `json:"authorization_id"`
+	AuthorizationID  string           `json:"authorization_id"` // not showing up?
 	Location         Location         `json:"location"`
 	Tariffs          []Tariff         `json:"tariffs"`
 	ChargingPeriods  []ChargingPeriod `json:"charging_periods"`
