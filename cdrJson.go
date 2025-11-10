@@ -32,7 +32,7 @@ type Cdr struct {
 	AveragePower         decimal.Decimal  `json:"average_power"`
 	FundingSource        FundingSource    `json:"funding_source"`
 	MaxPower             decimal.Decimal  `json:"max_power"`
-	PreTaxTotal          decimal.Decimal  `json:"pretax_total"`
+	PreTaxTotal          decimal.Decimal  `json:"pre_tax_total"`
 	StationTotalCost     decimal.Decimal  `json:"station_total_cost"`
 	RoamingPartnerRawCdr string           `json:"roaming_partner_raw_cdr"`
 	Currency             string           `json:"currency"`
