@@ -2,6 +2,8 @@ package denJson
 
 import (
 	"time"
+
+	"github.com/shopspring/decimal"
 )
 
 // multiple location response from API
@@ -29,10 +31,10 @@ type Connector struct {
 	TermsAndConditions string    `json:"terms_and_conditions,omitempty"`
 	LastUpdated        time.Time `json:"last_updated"`
 	// non-OCPI for DEN(///
-	MaxPower         float64 `json:"max_power,omitempty"`
-	MaxSessionLength int     `json:"max_session_length,omitempty"`
-	AvailablePower   float64 `json:"available_power,omitempty"`
-	PowerStatus      string  `json:"power_status,omitempty"`
+	MaxPower         decimal.Decimal `json:"max_power,omitempty"`
+	MaxSessionLength int             `json:"max_session_length,omitempty"`
+	AvailablePower   decimal.Decimal `json:"available_power,omitempty"`
+	PowerStatus      string          `json:"power_status,omitempty"`
 }
 
 // OCPI 2.1.1 section 8.3.2
@@ -155,9 +157,9 @@ type Location struct {
 }
 
 type Tax struct {
-	Name      string  `json:"name"`
-	Amount    float64 `json:"amount"`
-	AppliedOn string  `json:"applied_on"`
+	Name      string          `json:"name"`
+	Amount    decimal.Decimal `json:"amount"`
+	AppliedOn string          `json:"applied_on"`
 }
 
 // OCPI 2.1.1
@@ -171,14 +173,14 @@ type EnergyMix struct {
 
 // OCPI 2.1.1 section 8.4.8
 type EnvironmentalImpact struct {
-	Source string  `json:"source"`
-	Amount float64 `json:"amount"`
+	Source string          `json:"source"`
+	Amount decimal.Decimal `json:"amount"`
 }
 
 // OCPI 2.1.1 section 8.4.7
 type EnergySource struct {
-	Source     string  `json:"source"`
-	Percentage float64 `json:"float"`
+	Source     string          `json:"source"`
+	Percentage decimal.Decimal `json:"percentage"`
 }
 
 // OCPI 2.1.1 section 8.4.15
