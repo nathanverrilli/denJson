@@ -35,6 +35,7 @@ type Connector struct {
 	MaxSessionLength int             `json:"max_session_length,omitempty"`
 	AvailablePower   decimal.Decimal `json:"available_power,omitempty"`
 	PowerStatus      string          `json:"power_status,omitempty"`
+	MaxElectricPower decimal.Decimal `json:"max_electric_power"`
 }
 
 // OCPI 2.1.1 section 8.3.2
