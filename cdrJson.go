@@ -1,14 +1,15 @@
 package denJson
 
 import (
-	"github.com/shopspring/decimal"
 	"time"
+
+	"github.com/shopspring/decimal"
 )
 
 type CdrData struct {
-	Data       []Cdr `json:"data"`
-	StatusCode int   `json:"statusCode"`
-	Timestamp  time.Time
+	Data       []Cdr     `json:"data"`
+	StatusCode int       `json:"statusCode"`
+	Timestamp  time.Time `json:"timestamp"`
 }
 
 type Cdr struct {
