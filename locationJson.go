@@ -15,78 +15,78 @@ type LocationData struct {
 
 // OCPI 2.1.1 section 8.4.13
 type GeoLocation struct {
-	Latitude  string `json:"latitude"`
-	Longitude string `json:"longitude"`
+	Latitude  string `json:"latitude,omitempty"`
+	Longitude string `json:"longitude,omitempty"`
 }
 
 // OCPI 2.1.1 section 8.3.3
 type Connector struct {
-	ID                 string    `json:"id"`
-	Standard           string    `json:"standard"`
-	Format             string    `json:"format"`
-	PowerType          string    `json:"power_type"`
-	Voltage            int       `json:"voltage"`
-	Amperage           int       `json:"amperage"`
+	ID                 string    `json:"id,omitempty"`
+	Standard           string    `json:"standard,omitempty"`
+	Format             string    `json:"format,omitempty"`
+	PowerType          string    `json:"power_type,omitempty"`
+	Voltage            int       `json:"voltage,omitempty"`
+	Amperage           int       `json:"amperage,omitempty"`
 	TariffID           string    `json:"tariff_id,omitempty"`
 	TermsAndConditions string    `json:"terms_and_conditions,omitempty"`
-	LastUpdated        time.Time `json:"last_updated"`
+	LastUpdated        time.Time `json:"last_updated,omitempty"`
 	// non-OCPI for DEN(///
 	MaxPower         decimal.Decimal `json:"max_power,omitempty"`
 	MaxSessionLength int             `json:"max_session_length,omitempty"`
 	AvailablePower   decimal.Decimal `json:"available_power,omitempty"`
 	PowerStatus      string          `json:"power_status,omitempty"`
-	MaxElectricPower decimal.Decimal `json:"max_electric_power"`
+	MaxElectricPower decimal.Decimal `json:"max_electric_power,omitempty"`
 }
 
 // OCPI 2.1.1 section 8.3.2
 type Evses struct {
-	UID                string           `json:"uid"`
+	UID                string           `json:"uid,omitempty"`
 	EvseID             string           `json:"evse_id,omitempty"`
 	PartnerEvseID      string           `json:"partner_evse_id,omitempty"`
-	Status             string           `json:"status"`
+	Status             string           `json:"status,omitempty"`
 	StatusSchedule     []StatusSchedule `json:"status_schedule,omitempty"`
 	Capabilities       []string         `json:"capabilities,omitempty"`
-	Connectors         []Connector      `json:"connectors"`
+	Connectors         []Connector      `json:"connectors,omitempty"`
 	FloorLevel         string           `json:"floor_level,omitempty"`
 	Coordinates        GeoLocation      `json:"coordinates,omitempty"`
 	PhysicalReference  string           `json:"physical_reference,omitempty"`
 	Directions         []DisplayText    `json:"directions,omitempty"`
 	ParkingRestriction []string         `json:"parking_restriction,omitempty"`
 	Images             []Image          `json:"images,omitempty"`
-	LastUpdated        time.Time        `json:"last_updated"`
+	LastUpdated        time.Time        `json:"last_updated,omitempty"`
 }
 
 // OCPI 2.1.1 section 14.3
 type DisplayText struct {
-	Language string `json:"language"` // ISO 639-1
-	Text     string `json:"text"`
+	Language string `json:"language,omitempty"` // ISO 639-1
+	Text     string `json:"text,omitempty"`
 }
 
 // OCPI 2.1.1 section 8.4.22
 type StatusSchedule struct {
-	PeriodBegin time.Time `json:"period_begin"`
+	PeriodBegin time.Time `json:"period_begin,omitempty"`
 	PeriodEnd   time.Time `json:"period_end,omitempty"`
-	Status      string    `json:"status"`
+	Status      string    `json:"status,omitempty"`
 }
 
 // OCPI 2.1.1 section 8.4.2
 type BusinessDetails struct {
-	Name    string `json:"name"`
+	Name    string `json:"name,omitempty"`
 	Website string `json:"website,omitempty"`
 	Logo    Image  `json:"logo,omitempty"`
 }
 
 // OCPI 2.1.1 section 8.4.11
 type ExceptionalPeriod struct {
-	PeriodBegin string `json:"period_begin"`
-	PeriodEnd   string `json:"period_end"`
+	PeriodBegin string `json:"period_begin,omitempty"`
+	PeriodEnd   string `json:"period_end,omitempty"`
 }
 
 // OCPI 2.1.1 section 8.4.20
 type RegularHours struct {
-	Weekday     int    `json:"weekday"`
-	PeriodBegin string `json:"period_begin"`
-	PeriodEnd   string `json:"period_end"`
+	Weekday     int    `json:"weekday,omitempty"`
+	PeriodBegin string `json:"period_begin,omitempty"`
+	PeriodEnd   string `json:"period_end,omitempty"`
 }
 
 // OCPI 2.1.1 section 8.4.14
@@ -113,21 +113,21 @@ type Hotline struct {
 
 // OCPI 2.1.1
 type AdditionalGeoLocation struct {
-	Latitude  string      `json:"latitude"`
-	Longitude string      `json:"longitude"`
-	Name      DisplayText `json:"name,omitempty"`
+	Latitude  string      `json:"latitude,omitempty"`
+	Longitude string      `json:"longitude,omitempty"`
+	Name      DisplayText `json:"name,omitempty,omitempty"`
 }
 
 // OCPI 2.1.1
 type Location struct {
-	ID                 string                `json:"id"`
-	Type               string                `json:"type"`
+	ID                 string                `json:"id,omitempty"`
+	Type               string                `json:"type,omitempty"`
 	Name               string                `json:"name,omitempty"`
-	Address            string                `json:"address"`
-	City               string                `json:"city"`
-	PostalCode         string                `json:"postal_code"`
-	Country            string                `json:"country"`
-	Coordinates        GeoLocation           `json:"coordinates"`
+	Address            string                `json:"address,omitempty"`
+	City               string                `json:"city,omitempty"`
+	PostalCode         string                `json:"postal_code,omitempty"`
+	Country            string                `json:"country,omitempty"`
+	Coordinates        GeoLocation           `json:"coordinates,omitempty"`
 	RelatedLocations   AdditionalGeoLocation `json:"related_locations,omitempty"`
 	Evses              []Evses               `json:"evses,omitempty"`
 	Directions         []DisplayText         `json:"directions,omitempty"`
@@ -140,7 +140,7 @@ type Location struct {
 	ChargingWhenClosed bool                  `json:"charging_when_closed,omitempty"`
 	Images             []Image               `json:"images,omitempty"`
 	EnergyMix          EnergyMix             `json:"energy_mix,omitempty"`
-	LastUpdated        time.Time             `json:"last_updated"`
+	LastUpdated        time.Time             `json:"last_updated,omitempty"`
 	// Extended DEN parameters/values/information
 	Province               string        `json:"province,omitempty"`                 // non-OCPI
 	DriverGroups           []DriverGroup `json:"driver_groups,omitempty"`            // non-OCPI
@@ -158,14 +158,14 @@ type Location struct {
 }
 
 type Tax struct {
-	Name      string          `json:"name"`
-	Amount    decimal.Decimal `json:"amount"`
-	AppliedOn string          `json:"applied_on"`
+	Name      string          `json:"name,omitempty"`
+	Amount    decimal.Decimal `json:"amount,omitempty"`
+	AppliedOn string          `json:"applied_on,omitempty"`
 }
 
 // OCPI 2.1.1
 type EnergyMix struct {
-	IsGreenEnergy     bool                  `json:"is_green_energy"`
+	IsGreenEnergy     bool                  `json:"is_green_energy,omitempty"`
 	EnergySources     []EnergySource        `json:"energy_sources,omitempty"`
 	EnvironImpact     []EnvironmentalImpact `json:"environ_impact,omitempty"`
 	SupplierName      string                `json:"supplier_name,omitempty"`
@@ -174,14 +174,14 @@ type EnergyMix struct {
 
 // OCPI 2.1.1 section 8.4.8
 type EnvironmentalImpact struct {
-	Source string          `json:"source"`
-	Amount decimal.Decimal `json:"amount"`
+	Source string          `json:"source,omitempty"`
+	Amount decimal.Decimal `json:"amount,omitempty"`
 }
 
 // OCPI 2.1.1 section 8.4.7
 type EnergySource struct {
-	Source     string          `json:"source"`
-	Percentage decimal.Decimal `json:"percentage"`
+	Source     string          `json:"source,omitempty"`
+	Percentage decimal.Decimal `json:"percentage,omitempty"`
 }
 
 // OCPI 2.1.1 section 8.4.15
