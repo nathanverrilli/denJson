@@ -19,12 +19,12 @@ type Tariff struct {
 	Elements      []TariffElement `json:"elements,omitempty"`
 	TariffAltText []AltText       `json:"tariff_alt_text,omitempty"`
 	TariffAltUrl  string          `json:"tariff_alt_url,omitempty"`
-	EnergyMix     EnergyMix       `json:"energy_mix,omitempty"`
-	LastUpdated   time.Time       `json:"last_updated,omitempty"`
+	EnergyMix     EnergyMix       `json:"energy_mix"`
+	LastUpdated   time.Time       `json:"last_updated"`
 	/* DEN extensions */
 	DriverGroups []DriverGroup `json:"driver_groups,omitempty"`
-	Max          MinMax        `json:"max,omitempty"`
-	Min          MinMax        `json:"min,omitempty"`
+	Max          MinMax        `json:"max"`
+	Min          MinMax        `json:"min"`
 	Locations    []string      `json:"locations,omitempty"`
 }
 
@@ -40,7 +40,7 @@ type AltText struct {
 
 type TariffElement struct {
 	PriceComponents []PriceComponent `json:"price_components"`
-	Restrictions    Restrictions     `json:"restrictions,omitempty"`
+	Restrictions    Restrictions     `json:"restrictions"`
 }
 
 type PriceComponent struct {
@@ -54,14 +54,15 @@ type Restrictions struct {
 	EndTime   string          `json:"end_time,omitempty"`
 	StartDate string          `json:"start_date,omitempty"`
 	EndDate   string          `json:"end_date,omitempty"`
-	MinKwh    decimal.Decimal `json:"min_kwh,omitempty"`
-	MaxKwh    decimal.Decimal `json:"max_kwh,omitempty"`
-	MinPower  decimal.Decimal `json:"min_power,omitempty"`
-	MaxPower  decimal.Decimal `json:"max_power,omitempty"`
+	MinKwh    decimal.Decimal `json:"min_kwh"`
+	MaxKwh    decimal.Decimal `json:"max_kwh"`
+	MinPower  decimal.Decimal `json:"min_power"`
+	MaxPower  decimal.Decimal `json:"max_power"`
 	DayOfWeek []string        `json:"day_of_week,omitempty"`
 	// MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
 	MaxDuration            int `json:"max_duration,omitempty"`
 	MinDuration            int `json:"min_duration,omitempty"`
+	MinCongestion          int `json:"min_congestion,omitempty"`
 	MinCongestionThreshold int `json:"min_congestion_threshold,omitempty"`
 	MinVehicleSOC          int `json:"min_vehicle_soc,omitempty"`
 }

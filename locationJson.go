@@ -10,7 +10,7 @@ import (
 type LocationData struct {
 	Data       []Location `json:"data,omitempty"`
 	StatusCode int        `json:"status_code,omitempty"`
-	Timestamp  time.Time  `json:"timestamp,omitempty"`
+	Timestamp  time.Time  `json:"timestamp"`
 }
 
 // OCPI 2.1.1 section 8.4.13
@@ -29,13 +29,13 @@ type Connector struct {
 	Amperage           int       `json:"amperage,omitempty"`
 	TariffID           string    `json:"tariff_id,omitempty"`
 	TermsAndConditions string    `json:"terms_and_conditions,omitempty"`
-	LastUpdated        time.Time `json:"last_updated,omitempty"`
+	LastUpdated        time.Time `json:"last_updated"`
 	// non-OCPI for DEN(///
-	MaxPower         decimal.Decimal `json:"max_power,omitempty"`
+	MaxPower         decimal.Decimal `json:"max_power"`
 	MaxSessionLength int             `json:"max_session_length,omitempty"`
-	AvailablePower   decimal.Decimal `json:"available_power,omitempty"`
+	AvailablePower   decimal.Decimal `json:"available_power"`
 	PowerStatus      string          `json:"power_status,omitempty"`
-	MaxElectricPower decimal.Decimal `json:"max_electric_power,omitempty"`
+	MaxElectricPower decimal.Decimal `json:"max_electric_power"`
 }
 
 // OCPI 2.1.1 section 8.3.2
@@ -48,12 +48,12 @@ type Evses struct {
 	Capabilities       []string         `json:"capabilities,omitempty"`
 	Connectors         []Connector      `json:"connectors,omitempty"`
 	FloorLevel         string           `json:"floor_level,omitempty"`
-	Coordinates        GeoLocation      `json:"coordinates,omitempty"`
+	Coordinates        GeoLocation      `json:"coordinates"`
 	PhysicalReference  string           `json:"physical_reference,omitempty"`
 	Directions         []DisplayText    `json:"directions,omitempty"`
 	ParkingRestriction []string         `json:"parking_restriction,omitempty"`
 	Images             []Image          `json:"images,omitempty"`
-	LastUpdated        time.Time        `json:"last_updated,omitempty"`
+	LastUpdated        time.Time        `json:"last_updated"`
 }
 
 // OCPI 2.1.1 section 14.3
@@ -64,8 +64,8 @@ type DisplayText struct {
 
 // OCPI 2.1.1 section 8.4.22
 type StatusSchedule struct {
-	PeriodBegin time.Time `json:"period_begin,omitempty"`
-	PeriodEnd   time.Time `json:"period_end,omitempty"`
+	PeriodBegin time.Time `json:"period_begin"`
+	PeriodEnd   time.Time `json:"period_end"`
 	Status      string    `json:"status,omitempty"`
 }
 
@@ -73,7 +73,7 @@ type StatusSchedule struct {
 type BusinessDetails struct {
 	Name    string `json:"name,omitempty"`
 	Website string `json:"website,omitempty"`
-	Logo    Image  `json:"logo,omitempty"`
+	Logo    Image  `json:"logo"`
 }
 
 // OCPI 2.1.1 section 8.4.11
@@ -102,7 +102,7 @@ type Hours struct {
 type DriverGroup struct {
 	ID           int    `json:"id,omitempty"`
 	TariffID     string `json:"tariff_id,omitempty"`
-	OpeningTimes Hours  `json:"opening_times,omitempty"`
+	OpeningTimes Hours  `json:"opening_times"`
 }
 
 // DEN
@@ -115,7 +115,7 @@ type Hotline struct {
 type AdditionalGeoLocation struct {
 	Latitude  string      `json:"latitude,omitempty"`
 	Longitude string      `json:"longitude,omitempty"`
-	Name      DisplayText `json:"name,omitempty,omitempty"`
+	Name      DisplayText `json:"name,omitempty"`
 }
 
 // OCPI 2.1.1
@@ -127,26 +127,26 @@ type Location struct {
 	City               string                `json:"city,omitempty"`
 	PostalCode         string                `json:"postal_code,omitempty"`
 	Country            string                `json:"country,omitempty"`
-	Coordinates        GeoLocation           `json:"coordinates,omitempty"`
-	RelatedLocations   AdditionalGeoLocation `json:"related_locations,omitempty"`
+	Coordinates        GeoLocation           `json:"coordinates"`
+	RelatedLocations   AdditionalGeoLocation `json:"related_locations"`
 	Evses              []Evses               `json:"evses,omitempty"`
 	Directions         []DisplayText         `json:"directions,omitempty"`
-	Operator           BusinessDetails       `json:"operator,omitempty"`
-	Suboperator        BusinessDetails       `json:"suboperator,omitempty"`
-	Owner              BusinessDetails       `json:"owner,omitempty"`
+	Operator           BusinessDetails       `json:"operator"`
+	Suboperator        BusinessDetails       `json:"suboperator"`
+	Owner              BusinessDetails       `json:"owner"`
 	Facilities         []string              `json:"facilities,omitempty"`
 	TimeZone           string                `json:"time_zone,omitempty"`
-	OpeningTimes       Hours                 `json:"opening_times,omitempty"`
+	OpeningTimes       Hours                 `json:"opening_times"`
 	ChargingWhenClosed bool                  `json:"charging_when_closed,omitempty"`
 	Images             []Image               `json:"images,omitempty"`
-	EnergyMix          EnergyMix             `json:"energy_mix,omitempty"`
-	LastUpdated        time.Time             `json:"last_updated,omitempty"`
+	EnergyMix          EnergyMix             `json:"energy_mix"`
+	LastUpdated        time.Time             `json:"last_updated"`
 	// Extended DEN parameters/values/information
 	Province               string        `json:"province,omitempty"`                 // non-OCPI
 	DriverGroups           []DriverGroup `json:"driver_groups,omitempty"`            // non-OCPI
 	AuthIDType             string        `json:"auth_id_type,omitempty"`             // non-OCPI
 	PaymentMethods         []string      `json:"payment_methods,omitempty"`          // non-OCPI
-	Hotline                Hotline       `json:"hotline,omitempty"`                  // non-OCPI
+	Hotline                Hotline       `json:"hotline"`                            // non-OCPI
 	PluginDependency       string        `json:"plugin_dependency,omitempty"`        // non-OCPI
 	AccessRestriction      string        `json:"access_restriction,omitempty"`       // non-OCPI
 	UsageStatus            string        `json:"usage_status,omitempty"`             // non-OCPI
@@ -155,12 +155,17 @@ type Location struct {
 	Tax                    []Tax         `json:"tax,omitempty"`                      // non-OCPI
 	ChargingAccessibility  string        `json:"charging_accessibility,omitempty"`   // non-OCPI
 	ReservableDriverGroups []int         `json:"reservable_driver_groups,omitempty"` // non-OCPI
+	RemoteStopEnabled      bool          `json:"remote_stop_enabled,omitempty"`      // non-OCPI (FLO)
 }
 
 type Tax struct {
-	Name      string          `json:"name,omitempty"`
-	Amount    decimal.Decimal `json:"amount,omitempty"`
-	AppliedOn string          `json:"applied_on,omitempty"`
+	Name              string          `json:"name,omitempty"`
+	Amount            decimal.Decimal `json:"amount"`
+	AppliedOn         string          `json:"applied_on,omitempty"`
+	TaxType           string          `json:"tax_type,omitempty"`
+	TaxMultiplierType string          `json:"tax_multiplier_type,omitempty"`
+	TaxMultiplier     decimal.Decimal `json:"tax_multiplier"`
+	PaidBy            string          `json:"paid_by,omitempty"`
 }
 
 // OCPI 2.1.1
@@ -175,13 +180,13 @@ type EnergyMix struct {
 // OCPI 2.1.1 section 8.4.8
 type EnvironmentalImpact struct {
 	Source string          `json:"source,omitempty"`
-	Amount decimal.Decimal `json:"amount,omitempty"`
+	Amount decimal.Decimal `json:"amount"`
 }
 
 // OCPI 2.1.1 section 8.4.7
 type EnergySource struct {
 	Source     string          `json:"source,omitempty"`
-	Percentage decimal.Decimal `json:"percentage,omitempty"`
+	Percentage decimal.Decimal `json:"percentage"`
 }
 
 // OCPI 2.1.1 section 8.4.15
